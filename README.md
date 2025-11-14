@@ -64,37 +64,34 @@ In modern work environments, distractions are ubiquitous. This tool is aimed at 
 5. **ML Component**: A random forest model predicts “Focused” vs “Distracted” based on historic features.
 6. **Dashboard Loop**: Streamlit UI reads the logged data, displays charts, and shows real-time predictions.
 
-+-----------------------------+
-|        Webcam Input         |
-+-------------+---------------+
-              |
-              v
-  +---------------------------+
-  |  OpenCV Frame Capture     |
-  +-------------+-------------+
-                |
-                v
-+--------------------------------------+
-|   MediaPipe FaceMesh Processing      |
-+----------------+---------------------+
-                 |
-                 v
-+----------------------------------------------+
-| Eye Open Ratio + Face Orientation             |
-|   (Distraction Detection Logic)               |
-+----------------+-----------------------------+
-                 |
-                 v
-   +-------------------------------+
-   | Focus State Classification    |
-   |    (RandomForest Model)       |
-   +---------------+---------------+
-                   |
-                   v
-+----------------+----------------+----------------+
-| Alerts / Sound | Focus Log (CSV)| Streamlit Dash  |
-| Notifications  | Timestamp+State | Charts+Predicts |
-+----------------+----------------+----------------+
+## **Architecture Diagram**
+```text
+┌────────────────────────────┐
+│        Webcam Input        │
+└───────────────┬────────────┘
+                ▼
+   ┌────────────────────────┐
+   │  OpenCV Frame Capture  │
+   └─────────────┬──────────┘
+                 ▼
+┌──────────────────────────────────┐
+│   MediaPipe FaceMesh Processing  │
+└──────────────┬───────────────────┘
+               ▼
+┌──────────────────────────────────────┐
+│ Eye Open Ratio + Face Orientation     │
+│   (Distraction Detection Logic)       │
+└───────────────┬──────────────────────┘
+                ▼
+   ┌────────────────────────────┐
+   │ Focus State Classification │
+   │    (RandomForest Model)    │
+   └──────────────┬─────────────┘
+                  ▼
+┌────────────────────┬──────────────────────┬────────────────────────┐
+│ Alerts / Sound     │ Focus Log (CSV)      │ Streamlit Dashboard    │
+│ Notifications      │ Timestamp + State    │ Charts + Predictions   │
+└────────────────────┴──────────────────────┴────────────────────────┘
 
 
 
