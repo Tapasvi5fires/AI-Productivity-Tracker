@@ -92,7 +92,7 @@ In modern work environments, distractions are ubiquitous. This tool is aimed at 
 │ Alerts / Sound     │ Focus Log (CSV)      │ Streamlit Dashboard    │
 │ Notifications      │ Timestamp + State    │ Charts + Predictions   │
 └────────────────────┴──────────────────────┴────────────────────────┘
-
+```
 
 
 ## Installation & Setup
